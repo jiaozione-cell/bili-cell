@@ -1,0 +1,32 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual env
+.venv/
+venv/
+
+# PyInstaller build outputs
+dist/
+build/
+*.spec
+
+# Executables (如需发布可手动添加)
+*.exe
+
+# Logs
+*.log
+
+# Local config & credentials
+config.yaml
+cookies.json
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+
+# Misc
+.DS_Store
+Thumbs.db

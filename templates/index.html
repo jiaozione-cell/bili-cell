@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Viewer</title>
+    <style>
+        body { 
+            font-family: monospace; 
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+        }
+        .log-line { 
+            white-space: pre-wrap; 
+            font-weight: bold;
+        }
+        h1 { color: #d4d4d4; }
+        button {
+            background-color: #333;
+            color: #d4d4d4;
+            border: 1px solid #555;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Log Viewer</h1>
+    
+    <form method="get" style="display: inline;">
+        <select name="file" onchange="this.form.submit()">
+            <option value="">-- Select a log file --</option>
+            {% for file in log_files %}
+                <option value="{{ file }}" {% if file == selected_file %}selected{% endif %}>{{ file }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    
+    <button onclick="location.href=location.href">Refresh</button>
+
+    <div>
+        {% for line in logs %}
+            {% set parts = line.split(' - ') %}
+            {% if parts | length > 1 %}
+                {% set level = parts[1] %}
+                <p class="log-line" style="color: {{ log_colors.get(level, 'lightgray') }};">{{ line }}</p>
+            {% else %}
+                <p class="log-line" style="color: lightgray;">{{ line }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>

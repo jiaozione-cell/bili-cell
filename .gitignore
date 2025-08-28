@@ -34,3 +34,6 @@ cookies.json
 # Misc
 .DS_Store
 Thumbs.db
+
+# Windows batch scripts (不上传)
+*.bat

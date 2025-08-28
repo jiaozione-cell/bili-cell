@@ -20,6 +20,8 @@ build/
 
 # Logs
 *.log
+!upload.log
+!upload1.log
 
 # Local config & credentials
 # 若需忽略 config.yaml 请恢复下面一行；当前需要跟踪所以注释掉

@@ -1,0 +1,25 @@
+2025-08-29 01:55:17,124 - INFO - 日志系统初始化完成，日志将记录到: C:\Users\zhang\Desktop\bili\upload.log
+2025-08-29 01:55:17,124 - INFO - 脚本所在目录: C:\Users\zhang\Desktop\bili
+2025-08-29 01:55:17,124 - INFO - 正在扫描文件夹: C:\Users\zhang\Desktop\DouyinLiveRecorder_v4.0.3\downloads\抖音直播\Jiaozi
+2025-08-29 01:55:17,125 - INFO - 完整绝对路径为: C:\Users\zhang\Desktop\DouyinLiveRecorder_v4.0.3\downloads\抖音直播\Jiaozi
+2025-08-29 01:55:17,125 - INFO - 正在根据文件名末尾的数字排序...
+2025-08-29 01:55:17,125 - INFO - 排序完成，将按以下顺序上传 1 个视频:
+2025-08-29 01:55:17,125 - INFO -   => 小枫灬游戏解说_2025-08-25_07-10-33_000.ts
+2025-08-29 01:55:17,126 - INFO - 找到起始视频: 小枫灬游戏解说_2025-08-25_07-10-33_000.ts，将从中解析标题和日期。
+2025-08-29 01:55:17,127 - INFO - 成功解析 -> 标题: '小枫灬游戏解说', 日期: '2025-08-25'
+2025-08-29 01:55:17,168 - INFO - 成功创建封面图片: C:\Users\zhang\Desktop\bili\cover.jpg
+2025-08-29 01:55:17,168 - INFO - 服务器返回: {"is_only_self":0}
+2025-08-29 01:55:17,168 - INFO - 开始上传，标题: '直播回放-小枫灬游戏解说-2025-08-25'
+2025-08-29 01:55:18,495 - INFO - 服务器返回: {"code":0,"data":{"aid":115107673672198,"bvid":"BV1qDhUzhEqN","push_intro":{"show":0,"text":""},"submitact_banner":{"hotact_text":"","hotact_url":"","list":null}},"message":"0","ttl":1}
+2025-08-29 01:55:18,496 - INFO - 视频上传成功！
+2025-08-29 01:55:18,496 - INFO - 视频的 BVID 是: BV1qDhUzhEqN
+2025-08-29 01:55:18,497 - INFO - 访问链接: https://www.bilibili.com/video/BV1qDhUzhEqN
+2025-08-29 01:55:18,497 - INFO - 准备删除已上传的本地文件...
+2025-08-29 01:55:18,499 - INFO - 已删除文件: 小枫灬游戏解说_2025-08-25_07-10-33_000.ts
+2025-08-29 01:55:18,500 - INFO - 已删除文件: cover.jpg
+2025-08-29 01:55:18,500 - INFO - 等待 5 秒后再检查录制软件进程状态...
+2025-08-29 01:55:23,860 - INFO - 未检测到 DouyinLiveRecorder.exe 运行。
+2025-08-29 01:55:23,867 - INFO - DouyinLiveRecorder.exe 已从路径 'C:/Users/zhang/Desktop/DouyinLiveRecorder_v4.0.3/DouyinLiveRecorder.exe' 重启。
+000.ts => cost 0.31s, 1.28 MB/s.
+2025-08-29 01:55:18  INFO biliup::uploader::bilibili: ResponseData { code: 0, data: Some(Object {"aid": Number(115107673672198), "bvid": String("BV1qDhUzhEqN"), "push_intro": Object {"show": Number(0), "text": String("")}, "submitact_banner": Object {"hotact_text": String(""), "hotact_url": String(""), "list": Null}}), message: "0", ttl: Some(1) }
+2025-08-29 01:55:18  INFO biliup::uploader::bilibili: APP接口投稿成功

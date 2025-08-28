@@ -1,0 +1,9 @@
+2025-08-28 07:02:09,103 - INFO - 日志系统初始化完成，日志将记录到: C:\Users\zhang\Desktop\bili\upload1.log
+2025-08-28 07:02:09,105 - INFO - 脚本所在目录: C:\Users\zhang\Desktop\bili
+2025-08-28 07:02:09,106 - INFO - 正在扫描文件夹: C:\Users\zhang\Desktop\DouyinLiveRecorder_v4.0.3\downloads\抖音直播\Jiaozi
+2025-08-28 07:02:09,106 - INFO - 完整绝对路径为: C:\Users\zhang\Desktop\DouyinLiveRecorder_v4.0.3\downloads\抖音直播\Jiaozi
+2025-08-28 07:02:09,107 - INFO - 找到起始视频: 小枫灬游戏解说_2025-08-25_07-10-33_000.ts，将从中解析标题和日期。
+2025-08-28 07:02:09,107 - INFO - 成功解析 -> 标题: '小枫灬游戏解说', 日期: '2025-08-25'
+2025-08-28 07:02:09,108 - INFO - 从文件中提取到的标题: 小枫灬游戏解说
+2025-08-28 07:02:09,108 - INFO - 配置文件中指定的标题: 小枫灬游戏解说
+2025-08-28 07:02:09,108 - INFO - 标题匹配成功

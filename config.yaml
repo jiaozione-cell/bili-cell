@@ -1,0 +1,37 @@
+# Python 上传脚本配置文件
+
+# --- 路径设置 ---
+# 请在这里为每个条目提供完整的绝对路径
+
+upload:
+  only_self: false  # 或 false 是否仅自己可见
+
+paths:
+  # 视频文件所在的文件夹路径
+  video_folder: "C:/Users/zhang/Desktop/DouyinLiveRecorder_v4.0.3/downloads/抖音直播/Jiaozi"
+
+
+  # Cookies 文件的完整路径
+  cookies_file: "C:/Users/zhang/Desktop/biliupR-v0.2.4-x86_64-windows/cookies.json"
+
+  # 日志文件的完整路径
+  log_file: "C:/Users/zhang/Desktop/bili/upload.log"
+  log_file1: "C:/Users/zhang/Desktop/bili/upload1.log"
+
+  # 在这里添加录制软件的完整路径
+  recorder_exe_path: "C:/Users/zhang/Desktop/DouyinLiveRecorder_v4.0.3/DouyinLiveRecorder.exe"
+
+  # 名字
+  name: "小枫灬游戏解说"
+  # run地址
+  run_path: "C:/Users/zhang/Desktop/bili/up.exe"
+
+# --- 录制软件设置 ---
+recorder:
+  # 在这里指定录制软件的进程名
+  process_name: "DouyinLiveRecorder.exe"
+
+# --- 脚本行为设置 ---
+behavior:
+  # 上传成功后是否删除本地文件 (true / false)
+  delete_after_upload: true

@@ -12,14 +12,18 @@ dist/
 build/
 *.spec
 
-# Executables (如需发布可手动添加)
+# Executables (默认忽略；下面特定文件取消忽略)
 *.exe
+!up.exe
+!ts.exe
+!log.exe
 
 # Logs
 *.log
 
 # Local config & credentials
-config.yaml
+# 若需忽略 config.yaml 请恢复下面一行；当前需要跟踪所以注释掉
+# config.yaml
 cookies.json
 
 # IDE / Editor

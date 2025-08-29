@@ -38,3 +38,50 @@ if __name__ == '__main__':
 
         img = qr.make_image(fill_color="black", back_color="white")
         img.save(qrcode_path)
+
+        # 3. 轮询等待扫描和登录
+        qrcode_key = qrcode_data['data']['qrcode_key']
+        cookies_file_path = script_dir / "cookies.json"
+
+        print("请使用B站手机客户端扫描二维码...")
+
+        while True:
+            # get_cookies 会轮询二维码状态，登录成功后返回包含 cookies 的 JSON 字符串
+            # 它会阻塞直到登录成功、二维码过期或发生错误
+            try:
+                cookies_info_str = stream_gears.get_cookies(qrcode_key, proxy=None)
+                cookies_info = json.loads(cookies_info_str)
+
+                # 根据返回的 code 判断状态
+                # code: 0 - 成功
+                # code: 86038 - 二维码已失效
+                # code: 86090 - 二维码已扫码未确认
+                # code: 86101 - 未扫码
+                
+                code = cookies_info.get('data', {}).get('code')
+
+                if code == 0:
+                    print("登录成功！")
+                    # 保存到 cookies.json
+                    with open(cookies_file_path, 'w', encoding='utf-8') as f:
+                        # stream_gears 返回的已经是只包含 cookie 的 dict
+                        json.dump(cookies_info['data'], f, ensure_ascii=False, indent=4)
+                    
+                    print(f"Cookies 已成功保存到 {cookies_file_path}")
+                    break
+                elif code == 86038:
+                    print("二维码已过期，请重新运行脚本。")
+                    break
+                elif code == 86090:
+                    print("已扫描，请在手机上确认登录...")
+                elif code == 86101:
+                    print("等待扫描...")
+                else:
+                    print(f"未知状态: {cookies_info}")
+
+                time.sleep(3) # 每3秒查询一次状态
+
+            except Exception as e:
+                print(f"轮询过程中发生错误: {e}")
+                break
+

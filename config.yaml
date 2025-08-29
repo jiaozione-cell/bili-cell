@@ -17,6 +17,7 @@ paths:
   # 日志文件的完整路径
   log_file: "C:/Users/zhang/Desktop/bili/upload.log"
   log_file1: "C:/Users/zhang/Desktop/bili/upload1.log"
+  log_file2: "C:/Users/zhang/Desktop/bili/upload2.log"
 
   # 在这里添加录制软件的完整路径
   recorder_exe_path: "C:/Users/zhang/Desktop/DouyinLiveRecorder_v4.0.3/DouyinLiveRecorder.exe"

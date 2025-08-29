@@ -22,11 +22,13 @@ build/
 *.log
 !upload.log
 !upload1.log
+!upload2.log
 
 # Local config & credentials
 # 若需忽略 config.yaml 请恢复下面一行；当前需要跟踪所以注释掉
 # config.yaml
 cookies.json
+qrcode.png
 
 # IDE / Editor
 .vscode/

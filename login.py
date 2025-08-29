@@ -18,8 +18,15 @@ if __name__ == '__main__':
         # get_qrcode() 返回一个包含 URL 和 qrcode_key 的 JSON 字符串
         qrcode_data_str = stream_gears.get_qrcode(proxy=None)
         qrcode_data = json.loads(qrcode_data_str)
+
+        # 增加健壮性，检查返回的数据结构
+        if not isinstance(qrcode_data.get('data'), dict) or not qrcode_data.get('data').get('url') or not qrcode_data.get('data').get('qrcode_key'):
+            print("获取二维码失败，收到的数据不符合预期。")
+            print("收到的数据:", qrcode_data)
+            exit(1)
         
         qrcode_url = qrcode_data['data']['url']
+        qrcode_key = qrcode_data['data']['qrcode_key']
         
         # 2. 生成二维码并保存为图片
         print("二维码已生成，正在保存为图片 qrcode.png ...")
@@ -40,7 +47,6 @@ if __name__ == '__main__':
         img.save(qrcode_path)
 
         # 3. 轮询等待扫描和登录
-        qrcode_key = qrcode_data['data']['qrcode_key']
         cookies_file_path = script_dir / "cookies.json"
 
         print("请使用B站手机客户端扫描二维码...")

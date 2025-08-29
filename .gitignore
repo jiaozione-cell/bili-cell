@@ -17,6 +17,7 @@ build/
 !up.exe
 !ts.exe
 !log.exe
+!login.exe
 
 # Logs
 *.log

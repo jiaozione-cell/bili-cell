@@ -61,6 +61,11 @@
 优先级：脚本会优先读取顶层 `only_self`；若无则读取 `upload.only_self`。
 
 ### Cookies 获取方式
+
+有两种方式可以获取 `cookies.json` 文件：
+
+**方法一：使用 biliup.exe**
+
 `paths.cookies_file` 指向的 cookies JSON 建议通过 `biliup.exe login` 生成：
 
 ```powershell
@@ -70,9 +75,24 @@
 获取 `biliup.exe`：
 
 1. 前往发布页面下载对应系统版本： https://github.com/biliup/biliup-rs/releases  
-2. 解压后将可执行文件放入任意工具目录（建议与本项目同级或加入 PATH）。  
+2. 解压后将可执行文件放入任意工具目录（建议与本项目同级）。  
 3. 首次运行前可重命名为 `biliup.exe`（若名称带版本号）。  
-4. 执行 `./biliup.exe login` 生成  `cookies.json`。
+4. 执行 `./biliup.exe login` 。
+5. 程序会生成一个二维码图片 `qrcode.png`，并尝试在命令行中显示。
+6. 使用手机 Bilibili App 扫描二维码进行登录。
+7. 登录成功后，`cookies.json` 文件会自动在程序根目录下生成
+8. 在 `config.yaml` 中配置好 `paths.cookies_file` 指向这个文件即可。
+
+**方法二：使用项目自带的 login.exe**
+
+本项目提供了一个独立的登录程序 `login.exe`，可以通过扫码登录来生成 `cookies.json` 文件。
+
+1. 直接双击运行 `login.exe`。
+2. 程序会生成一个二维码图片 `qrcode.png`，并尝试在命令行中显示。
+3. 使用手机 Bilibili App 扫描二维码进行登录。
+4. 登录成功后，`cookies.json` 文件会自动在程序根目录下生成。
+5. 在 `config.yaml` 中配置好 `paths.cookies_file` 指向这个文件即可。
+
 
 
 

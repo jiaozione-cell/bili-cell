@@ -198,6 +198,18 @@ def main():
     elif 'upload' in config and 'only_self' in config['upload']:
         only_self = bool(config['upload']['only_self'])
 
+    tid = config['upload'].get('tid', 17)
+    tag = config['upload'].get('tag', "游戏,单机游戏,直播回放")
+    copyright = config['upload'].get('copyright', 2)
+    source = config['upload'].get('source', "https://live.douyin.com/439720548986")
+    if copyright == 1:
+        source = ""
+    desc = config['upload'].get('desc', "直播回放为自动化录制上传 如有侵权 请联系删除")
+    limit = config['upload'].get('limit', 3)
+    up_close_reply = config['upload'].get('up_close_reply', False)
+    up_selection_reply = config['upload'].get('up_selection_reply', False)
+    up_close_danmu = config['upload'].get('up_close_danmu', False)
+
     """
     上传视频稿件
 
@@ -227,13 +239,13 @@ def main():
     """
     video_info = {
         "title": final_title,       # 最终的视频标题 (例如: "游戏解说-2025-08-11")
-        "tid": 17,                 # 视频分区ID (171 = 单机游戏)
-        "tag": "游戏,单机游戏",     # 视频标签，多个标签用英文逗号隔开
-        "copyright": 2,             # 稿件类型 (1 = 自制, 2 = 转载)
-        "source": "https://live.douyin.com/439720548986",               # 转载来源 (如果是自制视频，可以留空)
-        "desc": "直播回放为自动化录制上传 如有侵权 请联系删除",                 # 视频简介 (可以留空)
+        "tid": tid,                 # 视频分区ID (171 = 单机游戏)
+        "tag": tag,                 # 视频标签，多个标签用英文逗号隔开
+        "copyright": copyright,     # 稿件类型 (1 = 自制, 2 = 转载)
+        "source": source,           # 转载来源 (如果是自制视频，可以留空)
+        "desc": desc,               # 视频简介 (可以留空)
         "cover": cover_path,        # 封面图片路径 (如果为空，B站会自动生成)
-        "limit": 3,                 # 上传并发线程数
+        "limit": limit,             # 上传并发线程数
         # B站投稿附加参数: is_only_self=1 表示 "仅自己可见"
         "extra-fields": '{\"is_only_self\":%d}' % (1 if only_self else 0)
     }

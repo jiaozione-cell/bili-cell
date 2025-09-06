@@ -78,22 +78,61 @@ def setup_logging(log_file_path):
     )
     logging.info(f"日志系统初始化完成，日志将记录到: {log_file_path}")
 
-def get_sorted_videos(video_folder):
-    """扫描并排序视频文件"""
+def _extract_sort_key(p: Path):
+    """从文件名中提取 (datetime, index) 作为排序键。
+
+    期望文件名形如：Title_YYYY-MM-DD_HH-MM-SS_INDEX.ext
+    兼容中文/任意标题；失败时回退最小时间与 index=-1。
+    """
+    import re
+    from datetime import datetime as _dt
+    stem = p.stem
+    parts = stem.split('_')
+
+    date_idx = None
+    for i, seg in enumerate(parts):
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", seg):
+            date_idx = i
+            break
+    dt_obj = _dt.min
+    index_num = -1
+    if date_idx is not None and date_idx + 1 < len(parts):
+        date_part = parts[date_idx]
+        time_part = parts[date_idx + 1]
+        if re.fullmatch(r"\d{2}-\d{2}-\d{2}", time_part):
+            try:
+                dt_obj = _dt.strptime(f"{date_part} {time_part}", "%Y-%m-%d %H-%M-%S")
+            except ValueError:
+                pass
+    for seg in reversed(parts):
+        if seg.isdigit():
+            try:
+                index_num = int(seg)
+            except ValueError:
+                pass
+            break
+    return (dt_obj, index_num)
+
+
+def get_sorted_videos(video_folder: Path):
+    """扫描并按(日期时间, 分段序号)排序视频文件; 支持 ts/mp4/flv。"""
     logging.info(f"正在扫描文件夹: {video_folder}")
     logging.info(f"完整绝对路径为: {video_folder.resolve()}")
-    video_paths = list(video_folder.glob('*.ts')) + list(video_folder.glob('*.mp4')) + list(video_folder.glob('*.flv'))
+    patterns = ('*.ts', '*.mp4', '*.flv')
+    video_paths = []
+    for pat in patterns:
+        video_paths.extend(video_folder.glob(pat))
 
     if not video_paths:
         logging.info("未找到需要上传的视频文件，程序退出。")
         return []
 
-    logging.info("正在根据文件名末尾的数字排序...")
+    logging.info("正在按日期时间与分段序号排序...")
     try:
-        video_paths.sort(key=lambda p: int(p.stem.split('_')[-1]))
-    except (ValueError, IndexError):
-        logging.warning("无法按数字后缀排序，将使用默认字母顺序排序。")
-        video_paths.sort()
+        video_paths.sort(key=_extract_sort_key)
+    except Exception as e:
+        logging.warning(f"高级排序失败({e})，改用文件名字母序。")
+        video_paths.sort(key=lambda p: p.name)
 
     logging.info(f"排序完成，将按以下顺序上传 {len(video_paths)} 个视频:")
     for path in video_paths:
